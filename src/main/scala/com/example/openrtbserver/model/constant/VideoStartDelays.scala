@@ -21,4 +21,16 @@ object VideoStartDelays extends Constants[VideoStartDelay] {
     def value: Int = -2
   }
 
+  /**
+   * There is no upper bound for this constant.
+   */
+  case class MidRoll(value: Int) extends VideoStartDelay
+
+  override def apply(value: Int): Option[VideoStartDelay] = {
+    super.apply(value) match {
+      case s@Some(_) => s
+      case None if value > 0 => Option(MidRoll(value))
+      case _ => None
+    }
+  }
 }

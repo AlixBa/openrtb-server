@@ -6,13 +6,13 @@ sealed trait BooleanAsInt extends Constant {
 
 object BooleansAsInt extends Constants[BooleanAsInt] {
 
-  val values: List[BooleanAsInt] = List(False, True)
+  val values: List[BooleanAsInt] = List(`false`, `true`)
 
-  case object False extends BooleanAsInt {
+  case object `false` extends BooleanAsInt {
     def value: Int = 0
   }
 
-  case object True extends BooleanAsInt {
+  case object `true` extends BooleanAsInt {
     def value: Int = 1
   }
 

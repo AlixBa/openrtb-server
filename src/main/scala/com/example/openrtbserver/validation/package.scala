@@ -1,6 +1,6 @@
 package com.example.openrtbserver
 
-import com.wix.accord.{Failure, Result, RuleViolation, Success}
+import com.wix.accord.{ Failure, Result, RuleViolation, Success }
 
 import scalaz.Scalaz._
 
@@ -11,7 +11,7 @@ package object validation {
    *
    * @param xOpt the Option[A] to enrich
    */
-  implicit class RichOption[A](xOpt: Option[A])(implicit ev: A => Ordered[A]) {
+  implicit class RichOption[A](xOpt: Option[A])(implicit ev: A ⇒ Ordered[A]) {
 
     def isEmptyOrGreaterThan(v: A): Boolean =
       xOpt.fold(true)(_ > v)
@@ -43,7 +43,7 @@ package object validation {
    * @param name the name of the option (property)
    * @return success or failure
    */
-  def validateEmptyOrPositive[A](o: Any, xOpt: Option[A], name: String)(implicit ev: A => Ordered[A]): Result = {
+  def validateEmptyOrPositive[A](o: Any, xOpt: Option[A], name: String)(implicit ev: A ⇒ Ordered[A]): Result = {
     val `-1`: A = (-1).asInstanceOf[A]
     val constraint: String = s"$name should be positive."
 

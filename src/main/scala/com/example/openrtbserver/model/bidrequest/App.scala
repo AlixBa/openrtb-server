@@ -1,6 +1,6 @@
 package com.example.openrtbserver.model.bidrequest
 
-import com.example.openrtbserver.model.constant.{BooleanAsInt, ContentCategory}
+import com.example.openrtbserver.model.constant.{ BooleanAsInt, ContentCategory }
 
 case class App(id: Option[String], name: Option[String], bundle: Option[String], domain: Option[String],
                storeurl: Option[String], cat: Option[Seq[ContentCategory]], sectioncat: Option[Seq[ContentCategory]],

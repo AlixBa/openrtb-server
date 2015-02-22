@@ -28,9 +28,9 @@ object VideoStartDelays extends Constants[VideoStartDelay] {
 
   override def apply(value: Int): Option[VideoStartDelay] = {
     super.apply(value) match {
-      case s@Some(_) => s
-      case None if value > 0 => Option(MidRoll(value))
-      case _ => None
+      case s @ Some(_)       ⇒ s
+      case None if value > 0 ⇒ Option(MidRoll(value))
+      case _                 ⇒ None
     }
   }
 }

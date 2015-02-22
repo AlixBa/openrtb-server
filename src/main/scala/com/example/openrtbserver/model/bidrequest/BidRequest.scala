@@ -1,6 +1,6 @@
 package com.example.openrtbserver.model.bidrequest
 
-import com.example.openrtbserver.model.constant.{AuctionType, BooleanAsInt}
+import com.example.openrtbserver.model.constant.{ AuctionType, BooleanAsInt }
 
 import scalaz.NonEmptyList
 

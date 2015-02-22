@@ -31,7 +31,7 @@ package object constant {
      * @return the matching constant
      */
     def apply(value: A#Value): Option[A] =
-      values.find(v => v.value == value)
+      values.find(v ⇒ v.value == value)
 
   }
 

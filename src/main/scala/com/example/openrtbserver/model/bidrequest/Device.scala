@@ -1,6 +1,6 @@
 package com.example.openrtbserver.model.bidrequest
 
-import com.example.openrtbserver.model.constant.{BooleanAsInt, ConnectionType, DeviceType}
+import com.example.openrtbserver.model.constant.{ BooleanAsInt, ConnectionType, DeviceType }
 
 case class Device(ua: Option[String], geo: Option[Geo], dnt: Option[BooleanAsInt], lmt: Option[BooleanAsInt],
                   ip: Option[String], ipv6: Option[String], devicetype: Option[DeviceType], make: Option[String],

@@ -14,7 +14,7 @@ object VideoValidators {
 
   }
 
-  object VSize extends Validator[Video] {
+  object Size extends Validator[Video] {
 
     def apply(video: Video): Result =
       validateEmptyOrPositive(video, video.w, "w")

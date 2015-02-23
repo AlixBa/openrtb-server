@@ -7,3 +7,12 @@ case class App(id: Option[String], name: Option[String], bundle: Option[String],
                pagecat: Option[Seq[ContentCategory]], ver: Option[String], privacypolicy: Option[BooleanAsInt],
                paid: Option[BooleanAsInt], publisher: Option[Publisher], content: Option[Content],
                keywords: Option[String], ext: Option[Any])
+
+object App {
+
+  def minimal: App =
+    App(None, None, None, None, None, None, None, None, None, None, None, None, None, None, None)
+
+  def recommended(id: String): App = minimal.copy(id = Option(id))
+
+}

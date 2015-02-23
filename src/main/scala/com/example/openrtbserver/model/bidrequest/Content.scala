@@ -9,3 +9,12 @@ case class Content(id: Option[String], episode: Option[Int], title: Option[Strin
                    qagmediarating: Option[QAGMediaRating], keywords: Option[String], livestream: Option[BooleanAsInt],
                    sourcerelationship: Option[SourceRelationship], len: Option[Int], language: Option[String],
                    embeddable: Option[BooleanAsInt], ext: Option[Any])
+
+object Content {
+
+  def minimal: Content = {
+    Content(None, None, None, None, None, None, None, None, None, None, None,
+      None, None, None, None, None, None, None, None, None)
+  }
+
+}

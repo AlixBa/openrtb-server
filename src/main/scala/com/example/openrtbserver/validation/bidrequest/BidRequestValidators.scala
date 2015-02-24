@@ -23,7 +23,7 @@ object BidRequestValidators {
   object `tmax` extends Validator[BidRequest] {
 
     def apply(bidRequest: BidRequest): Result =
-      validateEmptyOrPositive(bidRequest, bidRequest.tmax, "tmax")
+      validateEmptyOrPositiveInt(bidRequest, bidRequest.tmax, "tmax")
 
   }
 

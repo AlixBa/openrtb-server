@@ -35,15 +35,15 @@ object DeviceValidators {
   object Size extends Validator[Device] {
 
     def apply(device: Device): Result =
-      validateEmptyOrPositive(device, device.w, "w")
-        .and(validateEmptyOrPositive(device, device.h, "h"))
+      validateEmptyOrPositiveInt(device, device.w, "w")
+        .and(validateEmptyOrPositiveInt(device, device.h, "h"))
 
   }
 
   object `ppi` extends Validator[Device] {
 
     def apply(device: Device): Result =
-      validateEmptyOrPositive(device, device.ppi, "ppi")
+      validateEmptyOrPositiveInt(device, device.ppi, "ppi")
 
   }
 

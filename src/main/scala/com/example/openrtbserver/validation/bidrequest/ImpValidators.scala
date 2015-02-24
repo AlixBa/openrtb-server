@@ -23,7 +23,7 @@ object ImpValidators {
   object `bidfloor` extends Validator[Imp] {
 
     def apply(impression: Imp): Result =
-      validateEmptyOrPositive(impression, impression.bidfloor, "bidfloor")
+      validateEmptyOrPositiveFloat(impression, impression.bidfloor, "bidfloor")
 
   }
 

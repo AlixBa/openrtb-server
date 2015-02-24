@@ -9,24 +9,24 @@ object BannerValidators {
   object Size extends Validator[Banner] {
 
     def apply(banner: Banner): Result =
-      validateEmptyOrPositive(banner, banner.w, "w")
-        .and(validateEmptyOrPositive(banner, banner.h, "h"))
+      validateEmptyOrPositiveInt(banner, banner.w, "w")
+        .and(validateEmptyOrPositiveInt(banner, banner.h, "h"))
 
   }
 
   object MaxSize extends Validator[Banner] {
 
     def apply(banner: Banner): Result =
-      validateEmptyOrPositive(banner, banner.wmax, "wmax")
-        .and(validateEmptyOrPositive(banner, banner.hmax, "hmax"))
+      validateEmptyOrPositiveInt(banner, banner.wmax, "wmax")
+        .and(validateEmptyOrPositiveInt(banner, banner.hmax, "hmax"))
 
   }
 
   object MinSize extends Validator[Banner] {
 
     def apply(banner: Banner): Result =
-      validateEmptyOrPositive(banner, banner.wmin, "wmin")
-        .and(validateEmptyOrPositive(banner, banner.hmin, "hmin"))
+      validateEmptyOrPositiveInt(banner, banner.wmin, "wmin")
+        .and(validateEmptyOrPositiveInt(banner, banner.hmin, "hmin"))
 
   }
 

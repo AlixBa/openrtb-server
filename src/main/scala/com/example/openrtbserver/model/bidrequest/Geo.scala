@@ -9,6 +9,6 @@ case class Geo(lat: Option[Float], lon: Option[Float], `type`: Option[LocationTy
 object Geo {
 
   def minimal: Geo =
-  Geo(None, None, None, None, None, None, None, None, None, None, None)
+    Geo(None, None, None, None, None, None, None, None, None, None, None)
 
 }

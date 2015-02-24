@@ -9,7 +9,7 @@ object DealValidators {
   object `bidfloor` extends Validator[Deal] {
 
     def apply(deal: Deal): Result =
-      validateEmptyOrPositive(deal, deal.bidfloor, "bidfloor")
+      validateEmptyOrPositiveFloat(deal, deal.bidfloor, "bidfloor")
 
   }
 

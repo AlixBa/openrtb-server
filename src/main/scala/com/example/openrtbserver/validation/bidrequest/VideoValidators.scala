@@ -9,24 +9,24 @@ object VideoValidators {
   object Duration extends Validator[Video] {
 
     def apply(video: Video): Result =
-      validateEmptyOrPositive(video, video.minduration, "minduration")
-        .and(validateEmptyOrPositive(video, video.maxduration, "maxduration"))
+      validateEmptyOrPositiveInt(video, video.minduration, "minduration")
+        .and(validateEmptyOrPositiveInt(video, video.maxduration, "maxduration"))
 
   }
 
   object Size extends Validator[Video] {
 
     def apply(video: Video): Result =
-      validateEmptyOrPositive(video, video.w, "w")
-        .and(validateEmptyOrPositive(video, video.h, "h"))
+      validateEmptyOrPositiveInt(video, video.w, "w")
+        .and(validateEmptyOrPositiveInt(video, video.h, "h"))
 
   }
 
   object BitRate extends Validator[Video] {
 
     def apply(banner: Video): Result =
-      validateEmptyOrPositive(banner, banner.minbitrate, "minbitrate")
-        .and(validateEmptyOrPositive(banner, banner.maxbitrate, "maxbitrate"))
+      validateEmptyOrPositiveInt(banner, banner.minbitrate, "minbitrate")
+        .and(validateEmptyOrPositiveInt(banner, banner.maxbitrate, "maxbitrate"))
 
   }
 

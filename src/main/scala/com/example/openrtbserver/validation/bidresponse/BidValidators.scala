@@ -9,15 +9,15 @@ object BidValidators {
   object `price` extends Validator[Bid] {
 
     def apply(bid: Bid): Result =
-      validate(bid, bid.price >= 0, "price should be positive.")
+      validateEmptyOrPositiveFloat(bid, Option(bid.price), "price")
 
   }
 
   object Size extends Validator[Bid] {
 
     def apply(bid: Bid): Result =
-      validateEmptyOrPositive(bid, bid.w, "w")
-        .and(validateEmptyOrPositive(bid, bid.h, "h"))
+      validateEmptyOrPositiveInt(bid, bid.w, "w")
+        .and(validateEmptyOrPositiveInt(bid, bid.h, "h"))
 
   }
 

@@ -6,6 +6,6 @@ case class Regs(coppa: Option[BooleanAsInt], ext: Option[Any])
 
 object Regs {
 
- def minimal: Regs=Regs(None, None)
+  def minimal: Regs = Regs(None, None)
 
 }

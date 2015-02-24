@@ -9,15 +9,15 @@ package object validation {
   /**
    * Enriches Option[A] type.
    *
-   * @param xOpt the Option[A] to enrich
+   * @param opt the Option[A] to enrich
    */
-  implicit class RichOption[A](xOpt: Option[A])(implicit ev: A ⇒ Ordered[A]) {
+  implicit class RichOption[A](opt: Option[A]) {
 
-    def isEmptyOrGreaterThan(v: A): Boolean =
-      xOpt.fold(true)(_ > v)
+    def isEmptyOrGreaterThan(v: A)(implicit ev: A ⇒ Ordered[A]): Boolean =
+      opt.fold(true)(_ > v)
 
-    def isEmptyOrLowerThan(v: A): Boolean =
-      xOpt.fold(true)(_ < v)
+    def isEmptyOrLowerThan(v: A)(implicit ev: A ⇒ Ordered[A]): Boolean =
+      opt.fold(true)(_ > v)
 
   }
 
@@ -33,21 +33,24 @@ package object validation {
     condition.fold(Success, Failure(Set(new RuleViolation(o, constraint, None))))
 
   /**
-   * Validates an Option[A] to be undefined or positive.
+   * Validates an Option to be undefined or positive.
    * This is widely used into the BidRequest and the BidResponse
    * models.
    *
-   * @tparam A ordered type
    * @param o an object to pass as context
-   * @param xOpt the Option to validate
+   * @param opt the Option to validate
    * @param name the name of the option (property)
    * @return success or failure
    */
-  def validateEmptyOrPositive[A](o: Any, xOpt: Option[A], name: String)(implicit ev: A ⇒ Ordered[A]): Result = {
-    val `-1`: A = (-1).asInstanceOf[A]
+  def validateEmptyOrPositive[A](o: Any, opt: Option[A], name: String, value: A)(implicit ev: A ⇒ Ordered[A]): Result = {
     val constraint: String = s"$name should be positive."
-
-    validate(o, xOpt.isEmptyOrGreaterThan(`-1`), constraint)
+    validate(o, opt.isEmptyOrGreaterThan(value), constraint)
   }
+
+  def validateEmptyOrPositiveInt(o: Any, opt: Option[Int], name: String): Result =
+    validateEmptyOrPositive(o, opt, name, -1)
+
+  def validateEmptyOrPositiveFloat(o: Any, opt: Option[Float], name: String): Result =
+    validateEmptyOrPositive(o, opt, name, -1F)
 
 }

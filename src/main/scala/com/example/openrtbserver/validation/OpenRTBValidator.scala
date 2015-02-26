@@ -5,10 +5,10 @@ import com.example.openrtbserver.model.bidresponse.BidResponse
 import com.wix.accord.{ Result, Success, Validator }
 
 /**
- * The RTBValidator objects takes care of validating both
+ * The OpenRTBValidator takes care of validating both
  * schema and semantic of BidRequests and BidResponses.
  */
-object RTBValidator {
+class OpenRTBValidator(validators: Validators) {
 
   /**
    * Validates an option against some validators.
@@ -19,7 +19,7 @@ object RTBValidator {
    * @param opt the option to validate
    * @return success or failure
    */
-  private[RTBValidator] def validate[A](vs: List[Validator[A]], opt: Option[A]): Result = {
+  def validate[A](vs: List[Validator[A]], opt: Option[A]): Result = {
     opt.fold[Result](Success)(validate(vs, _))
   }
 
@@ -31,40 +31,19 @@ object RTBValidator {
    * @param a the element to validate
    * @return success or failure
    */
-  private[RTBValidator] def validate[A](vs: List[Validator[A]], a: A): Result = {
+  def validate[A](vs: List[Validator[A]], a: A): Result = {
     vs.foldLeft[Result](Success) { (r, v) ⇒
       r.and(v(a))
     }
   }
 
   /**
-   * More readable than its brother.
-   *
-   * @param validators all validators
-   * @param bidResponse the BidResponse to validate
-   * @return success or failure
-   */
-  def validateBidResponse(validators: BidResponseValidator, bidResponse: BidResponse): Result = {
-    import validators._
-
-    validate(bidResponseValidators, bidResponse)
-      .and(bidResponse.seatbid.foldLeft[Result](Success)({
-        (r, seatbid) ⇒
-          r.and(validate(seatBidValidators, seatbid))
-            .and(seatbid.bid.list.foldLeft[Result](Success)({
-              (r, bid) ⇒ r.and(validate(bidValidators, bid))
-            }))
-      }))
-  }
-
-  /**
    * Unreadable validation for a BidRequest.
    *
-   * @param validators all validators
    * @param bidRequest the BidRequest to validate
    * @return success or failure
    */
-  def validateBidRequest(validators: BidRequestValidator, bidRequest: BidRequest): Result = {
+  def validate(bidRequest: BidRequest): Result = {
     import validators._
 
     // TODO: split publisher, content, producer between app and site
@@ -111,4 +90,24 @@ object RTBValidator {
       }))
       .and(validate(regsValidators, bidRequest.regs)) // validate regs
   }
+
+  /**
+   * More readable than its brother.
+   *
+   * @param bidResponse the BidResponse to validate
+   * @return success or failure
+   */
+  def validate(bidResponse: BidResponse): Result = {
+    import validators._
+
+    validate(bidResponseValidators, bidResponse)
+      .and(bidResponse.seatbid.foldLeft[Result](Success)({
+        (r, seatbid) ⇒
+          r.and(validate(seatBidValidators, seatbid))
+            .and(seatbid.bid.list.foldLeft[Result](Success)({
+              (r, bid) ⇒ r.and(validate(bidValidators, bid))
+            }))
+      }))
+  }
+
 }

@@ -9,7 +9,9 @@ import org.scalatest.WordSpec
 
 import scalaz.NonEmptyList
 
-class RTBValidatorSpec extends WordSpec {
+class OpenRTBValidatorSpec extends WordSpec {
+
+  import Fixtures._
 
   "RTBValidator" when {
 
@@ -38,10 +40,8 @@ class RTBValidatorSpec extends WordSpec {
         val impWith1Error: Imp = Imp.minimal("id")
         val bidRequestWith1Error: BidRequest = BidRequest.minimal("id", NonEmptyList(impWith1Error))
 
-        val validators: BidRequestValidator = new BidRequestValidator {}
-
-        val result: Result = RTBValidator.validateBidRequest(validators, bidRequestWith23Errors)
-        val result2: Result = RTBValidator.validateBidRequest(validators, bidRequestWith1Error)
+        val result: Result = validator.validate(bidRequestWith23Errors)
+        val result2: Result = validator.validate(bidRequestWith1Error)
 
         result match {
           case Success             ⇒ fail("Validation success. It was supposed to fail.")
@@ -59,8 +59,7 @@ class RTBValidatorSpec extends WordSpec {
         val impWith0Error: Imp = Imp.minimal("id").copy(video = Option(videoWith0Error))
         val bidRequestWith0Error: BidRequest = BidRequest.minimal("id", NonEmptyList(impWith0Error))
 
-        val validators: BidRequestValidator = new BidRequestValidator {}
-        val result: Result = RTBValidator.validateBidRequest(validators, bidRequestWith0Error)
+        val result: Result = validator.validate(bidRequestWith0Error)
 
         result match {
           case Success             ⇒ Pass
@@ -77,8 +76,7 @@ class RTBValidatorSpec extends WordSpec {
         val seatBidWith3Error: SeatBid = SeatBid.minimal(NonEmptyList(bidWith3Errors))
         val bidResponseWith3Error: BidResponse = BidResponse.minimal("id").copy(seatbid = Seq(seatBidWith3Error))
 
-        val validators: BidResponseValidator = new BidResponseValidator {}
-        val result: Result = RTBValidator.validateBidResponse(validators, bidResponseWith3Error)
+        val result: Result = validator.validate(bidResponseWith3Error)
 
         result match {
           case Success             ⇒ fail("Validation success. It was supposed to fail.")
@@ -91,8 +89,7 @@ class RTBValidatorSpec extends WordSpec {
         val seatBidWith0Error: SeatBid = SeatBid.minimal(NonEmptyList(bidWith0Error))
         val bidResponseWith0Error: BidResponse = BidResponse.minimal("id").copy(seatbid = Seq(seatBidWith0Error))
 
-        val validators: BidResponseValidator = new BidResponseValidator {}
-        val result: Result = RTBValidator.validateBidResponse(validators, bidResponseWith0Error)
+        val result: Result = validator.validate(bidResponseWith0Error)
 
         result match {
           case Success             ⇒ Pass
@@ -103,5 +100,11 @@ class RTBValidatorSpec extends WordSpec {
     }
 
   }
+
+}
+
+object Fixtures {
+
+  val validator: OpenRTBValidator = new OpenRTBValidator(new Validators)
 
 }

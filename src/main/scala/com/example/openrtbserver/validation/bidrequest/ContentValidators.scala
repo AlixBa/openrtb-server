@@ -9,7 +9,7 @@ object ContentValidators {
   object `len` extends Validator[Content] {
 
     def apply(content: Content): Result =
-      validateEmptyOrPositiveInt(content, content.len, "len")
+      validateEmptyOrPositiveInt(content.len, "Content.len")
 
   }
 

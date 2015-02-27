@@ -8,14 +8,19 @@ object BidRequestValidators {
 
   object AppOrSite extends Validator[BidRequest] {
 
+    type ObjectName = String
+    type ObjectValue = Any
+
     def apply(bidRequest: BidRequest): Result = {
       val isApp: Boolean = bidRequest.app.isDefined
       val isSite: Boolean = bidRequest.site.isDefined
       val isSiteOrApp: Boolean = (isApp && !isSite) || (isSite && !isApp)
       val isSiteOrAppOrNothing: Boolean = isSiteOrApp || (!isApp && !isSite)
-      val constraint: String = "BidRequest cannot contain both App and Site."
 
-      validate(bidRequest, isSiteOrAppOrNothing, constraint)
+      val value: Map[ObjectName, ObjectValue] = Map("Site" -> bidRequest.site, "App" -> bidRequest.app)
+      val constraint: String = "cannot contain both App and Site."
+
+      validate(isSiteOrAppOrNothing, value, constraint, Option("BidRequest"))
     }
 
   }
@@ -23,7 +28,7 @@ object BidRequestValidators {
   object `tmax` extends Validator[BidRequest] {
 
     def apply(bidRequest: BidRequest): Result =
-      validateEmptyOrPositiveInt(bidRequest, bidRequest.tmax, "tmax")
+      validateEmptyOrPositiveInt(bidRequest.tmax, "BidRequest.tmax")
 
   }
 

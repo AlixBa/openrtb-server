@@ -6,7 +6,12 @@ import scalaz.Scalaz._
 
 package object validation {
 
-  type ContextObject = Any
+  type IntOption = Option[Int]
+  type FloatOption = Option[Float]
+  type ValidationValue = Any
+  type Name = String
+  type Constraint = String
+  type Description = Option[String]
 
   /**
    * Enriches Option[A] type.
@@ -26,38 +31,32 @@ package object validation {
   /**
    * Common use case in validation.
    *
-   * @param o an object to pass as context
    * @param condition the condition to test
-   * @param constraint the constraint related to the condition
+   * @param value The value of the object which failed the validation rule
+   * @param constraint A textual description of the constraint being violated
+   * @param description The textual description of the object under validation
    * @return success or failure
    */
-  def validate(o: ContextObject, condition: Boolean, constraint: String): Result =
-    condition.fold(Success, Failure(Set(new RuleViolation(o, constraint, None))))
+  def validate(condition: Boolean, value: ValidationValue,
+               constraint: Constraint, description: Description): Result =
+    condition.fold(Success, Failure(Set(new RuleViolation(value, constraint, description))))
 
   /**
    * Validates an Option to be undefined or positive.
    * This is widely used into the BidRequest and the BidResponse
    * models.
    *
-   * @param o an object to pass as context
    * @param opt the Option to validate
    * @param name the name of the option (property)
    * @return success or failure
    */
-  def validateEmptyOrPositive[A](
-    o:     ContextObject,
-    opt:   Option[A],
-    name:  String,
-    value: A
-  )(implicit ev: A ⇒ Ordered[A]): Result = {
-    val constraint: String = s"$name should be positive."
-    validate(o, opt.isEmptyOrGreaterThan(value), constraint)
-  }
+  def validateEmptyOrPositive[A](opt: Option[A], name: Name, `-1`: A)(implicit ev: A ⇒ Ordered[A]): Result =
+    validate(opt.isEmptyOrGreaterThan(`-1`), opt, "expected positive.", Option(name))
 
-  def validateEmptyOrPositiveInt(o: ContextObject, opt: Option[Int], name: String): Result =
-    validateEmptyOrPositive(o, opt, name, -1)
+  def validateEmptyOrPositiveInt(opt: IntOption, name: Name): Result =
+    validateEmptyOrPositive(opt, name, -1)
 
-  def validateEmptyOrPositiveFloat(o: ContextObject, opt: Option[Float], name: String): Result =
-    validateEmptyOrPositive(o, opt, name, -1F)
+  def validateEmptyOrPositiveFloat(opt: FloatOption, name: Name): Result =
+    validateEmptyOrPositive(opt, name, -1F)
 
 }

@@ -14,7 +14,7 @@ object DeviceValidators {
       val isIPV4: Boolean = device.ip.fold(true)(ipv4.findFirstIn(_).isDefined)
       val constraint: String = "ip is not in IPV4 format."
 
-      validate(device, isIPV4, constraint)
+      validate(isIPV4, device.ip, constraint, Option("Device.ip"))
     }
 
   }
@@ -27,7 +27,7 @@ object DeviceValidators {
       val isIPV6: Boolean = device.ipv6.fold(true)(ipv6.findFirstIn(_).isDefined)
       val constraint: String = "ipv6 is not in IPV6 format."
 
-      validate(device, isIPV6, constraint)
+      validate(isIPV6, device.ip, constraint, Option("Device.ipv6"))
     }
 
   }
@@ -35,15 +35,15 @@ object DeviceValidators {
   object Size extends Validator[Device] {
 
     def apply(device: Device): Result =
-      validateEmptyOrPositiveInt(device, device.w, "w")
-        .and(validateEmptyOrPositiveInt(device, device.h, "h"))
+      validateEmptyOrPositiveInt(device.w, "Device.w")
+        .and(validateEmptyOrPositiveInt(device.h, "Device.h"))
 
   }
 
   object `ppi` extends Validator[Device] {
 
     def apply(device: Device): Result =
-      validateEmptyOrPositiveInt(device, device.ppi, "ppi")
+      validateEmptyOrPositiveInt(device.ppi, "Device.ppi")
 
   }
 

@@ -12,7 +12,7 @@ object GeoValidators {
       val isValid: Boolean = geo.lat.isEmptyOrGreaterThan(-90) && geo.lat.isEmptyOrLowerThan(90)
       val constraint: String = "lat should be between -90 and 90."
 
-      validate(geo, isValid, constraint)
+      validate(isValid, geo.lat, constraint, Option("Geo.lat"))
     }
 
   }
@@ -23,7 +23,7 @@ object GeoValidators {
       val isValid: Boolean = geo.lon.isEmptyOrGreaterThan(-180) && geo.lon.isEmptyOrLowerThan(180)
       val constraint: String = "lon should be between -180 and 180."
 
-      validate(geo, isValid, constraint)
+      validate(isValid, geo.lon, constraint, Option("Geo.lon"))
     }
 
   }

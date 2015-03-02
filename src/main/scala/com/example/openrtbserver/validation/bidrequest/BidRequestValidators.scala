@@ -1,35 +1,31 @@
 package com.example.openrtbserver.validation.bidrequest
 
 import com.example.openrtbserver.model.bidrequest.BidRequest
-import com.example.openrtbserver.validation._
-import com.wix.accord.{ Result, Validator }
+import com.wix.accord.ViolationBuilder.result
+import com.wix.accord.dsl._
+import com.wix.accord.{ Result, RuleViolation, Validator }
 
 object BidRequestValidators {
 
-  object AppOrSite extends Validator[BidRequest] {
-
-    type ObjectName = String
-    type ObjectValue = Any
+  val appOrSite = new Validator[BidRequest] {
 
     def apply(bidRequest: BidRequest): Result = {
-      val isApp: Boolean = bidRequest.app.isDefined
-      val isSite: Boolean = bidRequest.site.isDefined
-      val isSiteOrApp: Boolean = (isApp && !isSite) || (isSite && !isApp)
-      val isSiteOrAppOrNothing: Boolean = isSiteOrApp || (!isApp && !isSite)
+      val isApp = bidRequest.app.isDefined
+      val isSite = bidRequest.site.isDefined
+      val isSiteOrAppOrNothing =
+        (isApp && !isSite) || (isSite && !isApp) || (!isApp && !isSite)
 
-      val value: Map[ObjectName, ObjectValue] = Map("Site" -> bidRequest.site, "App" -> bidRequest.app)
-      val constraint: String = "cannot contain both App and Site."
+      val value = Map("Site" -> bidRequest.site, "App" -> bidRequest.app)
+      val constraint = "cannot contain both App and Site"
+      val description = Option("BidRequest")
 
-      validate(isSiteOrAppOrNothing, value, constraint, Option("BidRequest"))
+      result(isSiteOrAppOrNothing, RuleViolation(value, constraint, description))
     }
 
   }
 
-  object `tmax` extends Validator[BidRequest] {
-
-    def apply(bidRequest: BidRequest): Result =
-      validateEmptyOrPositiveInt(bidRequest.tmax, "BidRequest.tmax")
-
+  val `tmax` = validator[BidRequest] { bidRequest ⇒
+    bidRequest.tmax.as("BidRequest.tmax").each.should(be >= 0)
   }
 
 }

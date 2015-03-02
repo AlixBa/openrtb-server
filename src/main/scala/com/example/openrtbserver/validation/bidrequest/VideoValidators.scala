@@ -1,33 +1,23 @@
 package com.example.openrtbserver.validation.bidrequest
 
 import com.example.openrtbserver.model.bidrequest.Video
-import com.example.openrtbserver.validation._
-import com.wix.accord.{ Result, Validator }
+import com.wix.accord.dsl._
 
 object VideoValidators {
 
-  object Duration extends Validator[Video] {
-
-    def apply(video: Video): Result =
-      validateEmptyOrPositiveInt(video.minduration, "Video.minduration")
-        .and(validateEmptyOrPositiveInt(video.maxduration, "Video.maxduration"))
-
+  val duration = validator[Video] { video ⇒
+    video.minduration.as("Video.minduration").each.should(be >= 0)
+    video.maxduration.as("Video.maxduration").each.should(be >= 0)
   }
 
-  object Size extends Validator[Video] {
-
-    def apply(video: Video): Result =
-      validateEmptyOrPositiveInt(video.w, "Video.w")
-        .and(validateEmptyOrPositiveInt(video.h, "Video.h"))
-
+  val size = validator[Video] { video ⇒
+    video.w.as("Video.w").each.should(be >= 0)
+    video.h.as("Video.h").each.should(be >= 0)
   }
 
-  object BitRate extends Validator[Video] {
-
-    def apply(video: Video): Result =
-      validateEmptyOrPositiveInt(video.minbitrate, "Video.minbitrate")
-        .and(validateEmptyOrPositiveInt(video.maxbitrate, "Video.maxbitrate"))
-
+  val bitRate = validator[Video] { video ⇒
+    video.minbitrate.as("Video.minbitrate").each.should(be >= 0)
+    video.maxbitrate.as("Video.maxbitrate").each.should(be >= 0)
   }
 
 }

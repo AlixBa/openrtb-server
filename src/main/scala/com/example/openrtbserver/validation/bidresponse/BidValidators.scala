@@ -1,24 +1,17 @@
 package com.example.openrtbserver.validation.bidresponse
 
 import com.example.openrtbserver.model.bidresponse.Bid
-import com.example.openrtbserver.validation._
-import com.wix.accord.{ Result, Validator }
+import com.wix.accord.dsl._
 
 object BidValidators {
 
-  object `price` extends Validator[Bid] {
-
-    def apply(bid: Bid): Result =
-      validateEmptyOrPositiveFloat(Option(bid.price), "Bid.price")
-
+  val `price` = validator[Bid] { bid ⇒
+    bid.price.as("Bid.price").should(be >= 0F)
   }
 
-  object Size extends Validator[Bid] {
-
-    def apply(bid: Bid): Result =
-      validateEmptyOrPositiveInt(bid.w, "Bid.w")
-        .and(validateEmptyOrPositiveInt(bid.h, "Bid.h"))
-
+  val size = validator[Bid] { bid ⇒
+    bid.w.as("Bid.w").each.should(be >= 0)
+    bid.h.as("Bid.h").each.should(be >= 0)
   }
 
 }

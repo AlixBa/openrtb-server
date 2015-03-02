@@ -1,31 +1,16 @@
 package com.example.openrtbserver.validation.bidrequest
 
 import com.example.openrtbserver.model.bidrequest.Geo
-import com.example.openrtbserver.validation._
-import com.wix.accord.{ Result, Validator }
+import com.wix.accord.dsl._
 
 object GeoValidators {
 
-  object `lat` extends Validator[Geo] {
-
-    def apply(geo: Geo): Result = {
-      val isValid: Boolean = geo.lat.isEmptyOrGreaterThan(-90) && geo.lat.isEmptyOrLowerThan(90)
-      val constraint: String = "lat should be between -90 and 90."
-
-      validate(isValid, geo.lat, constraint, Option("Geo.lat"))
-    }
-
+  val latitude = validator[Geo] { geo ⇒
+    geo.lat.as("Geo.lat").each.should(be.between(-90F, 90F))
   }
 
-  object `lon` extends Validator[Geo] {
-
-    def apply(geo: Geo): Result = {
-      val isValid: Boolean = geo.lon.isEmptyOrGreaterThan(-180) && geo.lon.isEmptyOrLowerThan(180)
-      val constraint: String = "lon should be between -180 and 180."
-
-      validate(isValid, geo.lon, constraint, Option("Geo.lon"))
-    }
-
+  val longitude = validator[Geo] { geo ⇒
+    geo.lon.as("Geo.lon").each.should(be.between(-180F, 180F))
   }
 
 }

@@ -6,7 +6,7 @@ trait Gender extends Constant {
 
 object Genders extends Constants[Gender] {
 
-  val values: List[Gender] =
+  val values: Seq[Gender] =
     List(Male, Female, Other)
 
   case object Male extends Gender {

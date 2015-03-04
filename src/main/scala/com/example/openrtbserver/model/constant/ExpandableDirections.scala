@@ -6,7 +6,7 @@ trait ExpandableDirection extends Constant {
 
 object ExpandableDirections extends Constants[ExpandableDirection] {
 
-  val values: List[ExpandableDirection] =
+  val values: Seq[ExpandableDirection] =
     List(Left, Right, Up, Down, Fullscreen)
 
   case object Left extends ExpandableDirection {

@@ -6,7 +6,7 @@ trait BannerAdType extends Constant {
 
 object BannerAdTypes extends Constants[BannerAdType] {
 
-  val values: List[BannerAdType] =
+  val values: Seq[BannerAdType] =
     List(XHTMLTextAd, XHTMLBannerAd, JavaScriptAd, Iframe)
 
   case object XHTMLTextAd extends BannerAdType {

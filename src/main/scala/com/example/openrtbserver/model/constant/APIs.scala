@@ -6,7 +6,7 @@ trait API extends Constant {
 
 object APIs extends Constants[API] {
 
-  val values: List[API] =
+  val values: Seq[API] =
     List(VPAID1, VPAID2, MRAID1, ORMMA, MRAID2)
 
   case object VPAID1 extends API {

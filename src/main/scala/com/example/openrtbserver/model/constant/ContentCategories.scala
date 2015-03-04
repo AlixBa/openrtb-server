@@ -6,7 +6,7 @@ trait ContentCategory extends Constant {
 
 object ContentCategories extends Constants[ContentCategory] {
 
-  val values: List[ContentCategory] =
+  val values: Seq[ContentCategory] =
     List(`IAB1`, `IAB1-1`, `IAB1-2`, `IAB1-3`, `IAB1-4`, `IAB1-5`, `IAB1-6`, `IAB1-7`, `IAB2`, `IAB2-1`,
       `IAB2-2`, `IAB2-3`, `IAB2-4`, `IAB2-5`, `IAB2-6`, `IAB2-7`, `IAB2-8`, `IAB2-9`, `IAB2-10`, `IAB2-11`, `IAB2-12`,
       `IAB2-13`, `IAB2-14`, `IAB2-15`, `IAB2-16`, `IAB2-17`, `IAB2-18`, `IAB2-19`, `IAB2-20`, `IAB2-21`, `IAB2-22`,

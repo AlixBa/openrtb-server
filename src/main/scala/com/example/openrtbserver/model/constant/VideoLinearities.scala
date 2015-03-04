@@ -6,7 +6,7 @@ trait VideoLinearity extends Constant {
 
 object VideoLinearities extends Constants[VideoLinearity] {
 
-  val values: List[VideoLinearity] =
+  val values: Seq[VideoLinearity] =
     List(Linear, NonLinear)
 
   case object Linear extends VideoLinearity {

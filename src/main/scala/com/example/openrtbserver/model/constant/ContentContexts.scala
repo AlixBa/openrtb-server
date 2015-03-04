@@ -6,7 +6,7 @@ trait ContentContext extends Constant {
 
 object ContentContexts extends Constants[ContentContext] {
 
-  val values: List[ContentContext] =
+  val values: Seq[ContentContext] =
     List(Video, Game, Music, Application, Text, Other, Unknown)
 
   case object Video extends ContentContext {

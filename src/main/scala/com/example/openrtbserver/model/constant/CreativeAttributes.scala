@@ -6,7 +6,7 @@ trait CreativeAttribute extends Constant {
 
 object CreativeAttributes extends Constants[CreativeAttribute] {
 
-  val values: List[CreativeAttribute] =
+  val values: Seq[CreativeAttribute] =
     List(AutoPlayAudioAd, UserInitiatedAudioAd)
 
   case object AutoPlayAudioAd extends CreativeAttribute {

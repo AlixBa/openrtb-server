@@ -6,7 +6,7 @@ trait AuctionType extends Constant {
 
 object AuctionTypes extends Constants[AuctionType] {
 
-  val values: List[AuctionType] =
+  val values: Seq[AuctionType] =
     List(FirstPrice, SecondPricePlus, FixedDealPrice)
 
   case object FirstPrice extends AuctionType {

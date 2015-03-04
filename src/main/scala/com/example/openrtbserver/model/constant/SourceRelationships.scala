@@ -6,7 +6,7 @@ trait SourceRelationship extends Constant {
 
 object SourceRelationships extends Constants[SourceRelationship] {
 
-  val values: List[SourceRelationship] =
+  val values: Seq[SourceRelationship] =
     List(Indirect, Direct)
 
   case object Indirect extends SourceRelationship {

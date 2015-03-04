@@ -24,7 +24,7 @@ package object constant {
     /**
      * @return all possible values
      */
-    def values: List[A]
+    def values: Seq[A]
 
     /**
      * @param value the underlying value to find

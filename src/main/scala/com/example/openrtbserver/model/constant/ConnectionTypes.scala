@@ -6,7 +6,7 @@ trait ConnectionType extends Constant {
 
 object ConnectionTypes extends Constants[ConnectionType] {
 
-  val values: List[ConnectionType] =
+  val values: Seq[ConnectionType] =
     List(Unknown, Ethernet, Wifi, CellularXG, Cellular2G, Cellular3G, Cellular4G)
 
   case object Unknown extends ConnectionType {

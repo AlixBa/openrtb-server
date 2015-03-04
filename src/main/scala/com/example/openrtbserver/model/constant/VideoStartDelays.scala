@@ -6,7 +6,7 @@ trait VideoStartDelay extends Constant {
 
 object VideoStartDelays extends Constants[VideoStartDelay] {
 
-  val values: List[VideoStartDelay] =
+  val values: Seq[VideoStartDelay] =
     List(PreRoll, GenericMidRoll, GenericPostRoll)
 
   case object PreRoll extends VideoStartDelay {

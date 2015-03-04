@@ -6,7 +6,7 @@ trait DeviceType extends Constant {
 
 object DeviceTypes extends Constants[DeviceType] {
 
-  val values: List[DeviceType] =
+  val values: Seq[DeviceType] =
     List(MobileTablet, PC, ConnectedTV, Phone, Tablet, ConnectedDevice, SetTopBox)
 
   case object MobileTablet extends DeviceType {

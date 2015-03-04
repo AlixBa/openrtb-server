@@ -6,7 +6,7 @@ trait VideoQuality extends Constant {
 
 object VideoQualities extends Constants[VideoQuality] {
 
-  val values: List[VideoQuality] =
+  val values: Seq[VideoQuality] =
     List(Unknown, ProfessionallyProduced, Prosumer, UGC)
 
   case object Unknown extends VideoQuality {

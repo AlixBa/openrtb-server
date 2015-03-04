@@ -6,7 +6,7 @@ trait ContentDeliveryMethod extends Constant {
 
 object ContentDeliveryMethods extends Constants[ContentDeliveryMethod] {
 
-  val values: List[ContentDeliveryMethod] = List(Streaming, Progressive)
+  val values: Seq[ContentDeliveryMethod] = List(Streaming, Progressive)
 
   case object Streaming extends ContentDeliveryMethod {
     def value: Int = 1

@@ -6,7 +6,7 @@ trait AdPosition extends Constant {
 
 object AdPositions extends Constants[AdPosition] {
 
-  val values: List[AdPosition] =
+  val values: Seq[AdPosition] =
     List(Unknown, AboveTheFold, BelowTheFold, Header, Footer, Sidebar, Fullscreen)
 
   case object Unknown extends AdPosition {

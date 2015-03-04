@@ -6,7 +6,7 @@ trait LocationType extends Constant {
 
 object LocationTypes extends Constants[LocationType] {
 
-  val values: List[LocationType] =
+  val values: Seq[LocationType] =
     List(GPS, IP, UserProvided)
 
   case object GPS extends LocationType {

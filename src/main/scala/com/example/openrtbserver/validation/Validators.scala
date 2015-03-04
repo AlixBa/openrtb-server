@@ -18,59 +18,59 @@ class Validators {
    * BidRequest part.
    */
 
-  def bidRequestValidators: List[Validator[BidRequest]] =
+  def bidRequestValidators: Seq[Validator[BidRequest]] =
     List(BidRequestValidators.appOrSite, BidRequestValidators.`tmax`)
 
-  def impValidators: List[Validator[Imp]] =
+  def impValidators: Seq[Validator[Imp]] =
     List(ImpValidators.bannerOrVideoOrNative, ImpValidators.`bidfloor`)
 
-  def bannerValidators: List[Validator[Banner]] =
+  def bannerValidators: Seq[Validator[Banner]] =
     List(BannerValidators.size, BannerValidators.maxSize, BannerValidators.minSize)
 
-  def videoValidators: List[Validator[Video]] =
+  def videoValidators: Seq[Validator[Video]] =
     List(VideoValidators.duration, VideoValidators.size, VideoValidators.bitRate)
 
-  def nativeValidators: List[Validator[Native]] = List.empty
+  def nativeValidators: Seq[Validator[Native]] = List.empty
 
-  def pmpValidators: List[Validator[Pmp]] = List.empty
+  def pmpValidators: Seq[Validator[Pmp]] = List.empty
 
-  def dealValidators: List[Validator[Deal]] =
+  def dealValidators: Seq[Validator[Deal]] =
     List(DealValidators.`bidfloor`)
 
-  def siteValidators: List[Validator[Site]] = List.empty
+  def siteValidators: Seq[Validator[Site]] = List.empty
 
-  def appValidators: List[Validator[App]] = List.empty
+  def appValidators: Seq[Validator[App]] = List.empty
 
-  def publisherValidators: List[Validator[Publisher]] = List.empty
+  def publisherValidators: Seq[Validator[Publisher]] = List.empty
 
-  def contentValidators: List[Validator[Content]] =
+  def contentValidators: Seq[Validator[Content]] =
     List(ContentValidators.`len`)
 
-  def producerValidators: List[Validator[Producer]] = List.empty
+  def producerValidators: Seq[Validator[Producer]] = List.empty
 
-  def deviceValidators: List[Validator[Device]] =
+  def deviceValidators: Seq[Validator[Device]] =
     List(DeviceValidators.`ipv4`, DeviceValidators.`ipv6`, DeviceValidators.size, DeviceValidators.`ppi`)
 
-  def geoValidators: List[Validator[Geo]] =
+  def geoValidators: Seq[Validator[Geo]] =
     List(GeoValidators.latitude, GeoValidators.longitude)
 
-  def userValidators: List[Validator[User]] = List.empty
+  def userValidators: Seq[Validator[User]] = List.empty
 
-  def dataValidators: List[Validator[Data]] = List.empty
+  def dataValidators: Seq[Validator[Data]] = List.empty
 
-  def segmentValidators: List[Validator[Segment]] = List.empty
+  def segmentValidators: Seq[Validator[Segment]] = List.empty
 
-  def regsValidators: List[Validator[Regs]] = List.empty
+  def regsValidators: Seq[Validator[Regs]] = List.empty
 
   /**
    * BidResponse part.
    */
 
-  def bidResponseValidators: List[Validator[BidResponse]] = List.empty
+  def bidResponseValidators: Seq[Validator[BidResponse]] = List.empty
 
-  def seatBidValidators: List[Validator[SeatBid]] = List.empty
+  def seatBidValidators: Seq[Validator[SeatBid]] = List.empty
 
-  def bidValidators: List[Validator[Bid]] =
+  def bidValidators: Seq[Validator[Bid]] =
     List(BidValidators.`price`, BidValidators.size)
 
 }

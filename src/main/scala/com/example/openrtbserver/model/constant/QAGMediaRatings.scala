@@ -6,7 +6,7 @@ trait QAGMediaRating extends Constant {
 
 object QAGMediaRatings extends Constants[QAGMediaRating] {
 
-  val values: List[QAGMediaRating] =
+  val values: Seq[QAGMediaRating] =
     List(All, Over12, Mature)
 
   case object All extends QAGMediaRating {

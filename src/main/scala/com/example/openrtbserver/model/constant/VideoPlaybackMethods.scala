@@ -6,7 +6,7 @@ trait VideoPlaybackMethod extends Constant {
 
 object VideoPlaybackMethods extends Constants[VideoPlaybackMethod] {
 
-  val values: List[VideoPlaybackMethod] =
+  val values: Seq[VideoPlaybackMethod] =
     List(AutoPlaySoundOn, AutoPlaySoundOff, ClickToPlay, MouseOver)
 
   case object AutoPlaySoundOn extends VideoPlaybackMethod {

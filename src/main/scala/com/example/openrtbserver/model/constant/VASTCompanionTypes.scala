@@ -6,7 +6,7 @@ trait VASTCompanionType extends Constant {
 
 object VASTCompanionTypes extends Constants[VASTCompanionType] {
 
-  val values: List[VASTCompanionType] =
+  val values: Seq[VASTCompanionType] =
     List(Static, HTML, Iframe)
 
   case object Static extends VASTCompanionType {

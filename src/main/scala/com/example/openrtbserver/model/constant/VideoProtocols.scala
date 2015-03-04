@@ -6,7 +6,7 @@ trait VideoProtocol extends Constant {
 
 object VideoProtocols extends Constants[VideoProtocol] {
 
-  val values: List[VideoProtocol] =
+  val values: Seq[VideoProtocol] =
     List(VAST1, VAST2, VAST3, VAST1Wrapper, VAST2Wrapper, VAST3Wrapper)
 
   case object VAST1 extends VideoProtocol {

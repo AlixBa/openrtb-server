@@ -6,7 +6,7 @@ trait NoBidCode extends Constant {
 
 object NoBidCodes extends Constants[NoBidCode] {
 
-  val values: List[NoBidCode] =
+  val values: Seq[NoBidCode] =
     List(UnknownError, TechnicalError, InvalidRequest, KnownWebSpider, SuspectedNonHuman,
       CloudOrDataCenterOrProxy, UnsupportedDevice, BlockedPublisherOrSite, UnmatchedUser)
 

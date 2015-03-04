@@ -28,7 +28,7 @@ object ImpValidators {
 
   }
 
-  val `bidfloor` = validator[Imp] { imp ⇒
+  val `bidfloor`: Validator[Imp] = validator[Imp] { imp ⇒
     imp.bidfloor.as("Imp.bidfloor").each.should(be >= 0F)
   }
 

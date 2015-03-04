@@ -9,4 +9,5 @@ case class SeatBid(bid: NonEmptyList[Bid], seat: Option[String], group: Option[B
 object SeatBid {
 
   def minimal(bid: NonEmptyList[Bid]): SeatBid = SeatBid(bid, None, None, None)
+
 }

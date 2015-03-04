@@ -35,12 +35,12 @@ object DeviceValidators {
 
   }
 
-  val size = validator[Device] { device ⇒
+  val size: Validator[Device] = validator[Device] { device ⇒
     device.w.as("Device.w").each.should(be >= 0)
     device.h.as("Device.h").each.should(be >= 0)
   }
 
-  val `ppi` = validator[Device] { device ⇒
+  val `ppi`: Validator[Device] = validator[Device] { device ⇒
     device.ppi.as("Device.ppi").each.should(be >= 0)
   }
 

@@ -2,9 +2,7 @@ package com.example.openrtbserver.validation
 
 import com.example.openrtbserver.model.bidrequest._
 import com.example.openrtbserver.model.bidresponse._
-import com.wix.accord.combinators.And
-import com.wix.accord.dsl._
-import com.wix.accord.{ Result, Validator, validate ⇒ wixValidate }
+import com.wix.accord.{ Result, validate ⇒ wixValidate }
 
 /**
  * The OpenRTBValidator takes care of validating both

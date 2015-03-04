@@ -1,7 +1,7 @@
 package com.example.openrtbserver.validation
 
 import com.example.openrtbserver.model.bidrequest._
-import com.example.openrtbserver.model.bidresponse.{BidResponse, SeatBid, Bid}
+import com.example.openrtbserver.model.bidresponse.{ Bid, BidResponse, SeatBid }
 import com.wix.accord.Validator
 import com.wix.accord.combinators.And
 import com.wix.accord.dsl._

@@ -24,7 +24,7 @@ object BidRequestValidators {
 
   }
 
-  val `tmax` = validator[BidRequest] { bidRequest ⇒
+  val `tmax`: Validator[BidRequest] = validator[BidRequest] { bidRequest ⇒
     bidRequest.tmax.as("BidRequest.tmax").each.should(be >= 0)
   }
 

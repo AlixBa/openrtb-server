@@ -13,7 +13,7 @@ import com.wix.accord.dsl._
  *
  * @param validators the validators to transform
  */
-class ValidatorsTransformer(validators: Validators) {
+private[validation] class ValidatorsTransformer(validators: Validators) {
 
   import validators._
 

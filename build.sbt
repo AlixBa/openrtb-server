@@ -11,6 +11,7 @@ libraryDependencies ++= Seq(
   "org.scalacheck" %% "scalacheck" % "1.12.2" % "test",
   "ch.qos.logback" % "logback-classic" % "1.1.2",
   "org.scalaz" %% "scalaz-core" % "7.1.1",
-  "com.wix" %% "accord-core" % "0.4.1"
+  "com.wix" %% "accord-core" % "0.4.1",
+  "com.typesafe" % "config" % "1.2.1"
 )
 

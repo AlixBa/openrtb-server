@@ -2,6 +2,7 @@ package com.example.openrtbserver.validation
 
 import com.example.openrtbserver.model.bidrequest._
 import com.example.openrtbserver.model.bidresponse.{ Bid, BidResponse, SeatBid }
+import com.example.openrtbserver.model.context.ContextualizedBid
 import com.wix.accord.Validator
 import com.wix.accord.combinators.And
 import com.wix.accord.dsl._
@@ -123,4 +124,9 @@ private[validation] class ValidatorsTransformer(validators: Validators) {
     bidResponse.is(valid(new And(bidResponseValidators: _*)))
     bidResponse.seatbid.each.is(valid(seatBidValidator))
   }
+
+  val contextualizedBidValidator: Validator[ContextualizedBid] = validator[ContextualizedBid] { cb ⇒
+    cb.is(valid(new And(contextualizedBidValidators: _*)))
+  }
+
 }

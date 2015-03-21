@@ -2,8 +2,10 @@ package com.example.openrtbserver.validation
 
 import com.example.openrtbserver.model.bidrequest._
 import com.example.openrtbserver.model.bidresponse.{ Bid, BidResponse, SeatBid }
+import com.example.openrtbserver.model.context.ContextualizedBid
 import com.example.openrtbserver.validation.bidrequest._
 import com.example.openrtbserver.validation.bidresponse.BidValidators
+import com.example.openrtbserver.validation.context.ContextualizedBidValidators
 import com.wix.accord.Validator
 
 /**
@@ -64,6 +66,12 @@ class Validators {
 
   def bidValidators: Seq[Validator[Bid]] = List.empty
 
+  /**
+   * ContextualizedBid part.
+   */
+
+  def contextualizedBidValidators: Seq[Validator[ContextualizedBid]] = List.empty
+
 }
 
 /**
@@ -97,5 +105,9 @@ class DefaultValidators extends Validators {
 
   override def bidValidators: Seq[Validator[Bid]] =
     List(BidValidators.`price`, BidValidators.size)
+
+  override def contextualizedBidValidators: Seq[Validator[ContextualizedBid]] =
+    List(ContextualizedBidValidators.`cur`, ContextualizedBidValidators.`seat`, ContextualizedBidValidators.`adomain`,
+      ContextualizedBidValidators.`cat`, ContextualizedBidValidators.auction, ContextualizedBidValidators.`price`)
 
 }

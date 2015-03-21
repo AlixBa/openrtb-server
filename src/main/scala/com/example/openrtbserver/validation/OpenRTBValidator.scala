@@ -2,6 +2,7 @@ package com.example.openrtbserver.validation
 
 import com.example.openrtbserver.model.bidrequest._
 import com.example.openrtbserver.model.bidresponse._
+import com.example.openrtbserver.model.context.ContextualizedBid
 import com.wix.accord.{ Result, validate ⇒ wixValidate }
 
 /**
@@ -29,5 +30,14 @@ class OpenRTBValidator(validators: Validators) extends ValidatorsTransformer(val
    */
   def validate(bidResponse: BidResponse): Result =
     wixValidate(bidResponse)(bidResponseValidator)
+
+  /**
+   * Validates a ContextualizedBid.
+   *
+   * @param contextualizedBid the ContextualizedBid to validate
+   * @return success or failure
+   */
+  def validate(contextualizedBid: ContextualizedBid): Result =
+    wixValidate(contextualizedBid)(contextualizedBidValidator)
 
 }
